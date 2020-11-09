@@ -1,3 +1,4 @@
+import 'package:chat_app/services/socket_service.dart';
 import 'package:chat_app/widgets/boton_azul.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -63,6 +64,7 @@ class __FormState extends State<_Form> {
   Widget build(BuildContext context) {
 
     final authService = Provider.of<AuthService>(context);
+    final socketService = Provider.of<SocketService>(context);
 
     return Container(
       margin: EdgeInsets.only(top: 40),
@@ -92,7 +94,7 @@ class __FormState extends State<_Form> {
             
               if( loginOk ){
                 //Conectar a nuestro socket server
-
+                socketService.connect();
                 //Navegar a otra pantalla
                 Navigator.pushReplacementNamed(context, 'usuarios');
               } else {
